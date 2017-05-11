@@ -1,7 +1,8 @@
 FROM    alpine:latest
-
+    
 RUN     apk update && \
-        apk add -y aria2 nginx git
+        apk add -y aria2 nginx git libc6-compat ca-certificates wget openssl && \
+        update-ca-certificates
 
 RUN     mkdir -p $HOME/.aria2 && \
         mkdir /run/nginx && \
