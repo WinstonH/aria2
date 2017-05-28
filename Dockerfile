@@ -1,16 +1,13 @@
 FROM    alpine:latest
 
 RUN     apk update && \
-        apk add aria2 nginx git
+        apk add aria2
 
-RUN     mkdir -p /root/.aria2 && \
-        mkdir /run/nginx && \
-        git clone https://github.com/ziahamza/webui-aria2.git /var/www/webui
+RUN     mkdir -p /root/.aria2
 
 COPY    aria2.conf /root/.aria2/aria2.conf
-COPY    default.conf /etc/nginx/conf.d/default.conf
 COPY    start.sh /start.sh
 COPY    hook.sh /hook.sh
-EXPOSE  80 6800
+EXPOSE  6800
 
 CMD     ["/start.sh"]
